@@ -1,6 +1,8 @@
 import './style.css'
 import * as THREE from 'three'
-import { addDefaultMeshes } from './addDefaultMeshes.js';
+import { addDefaultMeshes, addStandardMeshes } from './addDefaultMeshes.js';
+import { addLight } from './addLight.js';
+
 
 const renderer = new THREE.WebGLRenderer({antialias:true})
 const scene = new THREE.Scene()
@@ -9,7 +11,7 @@ camera.position.set(0,0,5)
 
 const render = new THREE.WebGLRenderer({antialias:true})
 const meshes = {}
-
+const lights = {}
 
 init()
 
@@ -29,9 +31,9 @@ function init() {
     //meshes.copy3.position.x = -2
     scene.add(meshes.copy, meshes.copy2) //meshes.copy3
     
+    lights.default = addLight({xPos:5, yPos:5, zPos:5})
 
-    //add to scene
-    //scene.add(meshes.default)
+    scene.add(lights.default)
 
     // const geometry = new THREE.BoxGeometry(1,1,1)
     // const material = new THREE.MeshBasicMaterial({color: 0xfff000})
